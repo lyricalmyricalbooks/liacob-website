@@ -15,12 +15,15 @@
 
 h1, h2, h3, h4, .serif { font-family: var(--font-logo); }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth; 
+  font-size: 62.5%; 
+}
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-ui);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
