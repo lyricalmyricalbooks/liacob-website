@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var root = window.location.pathname.includes('/liacob/') ? '/liacob/' : '/';
+  var pathname = window.location.pathname;
+  var root = pathname.includes('/liacob-website/') ? '/liacob-website/' : pathname.includes('/liacob/') ? '/liacob/' : '/';
   var NAV = '<header class="site-header">'
     + '<div class="header-top">'
     + '  <div class="header-top-left">'
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('header-nav').classList.toggle('open');
   });
 
-  var path = window.location.pathname;
+  var path = pathname;
   document.querySelectorAll('.nav-link').forEach(function(link) {
     var href = link.getAttribute('href');
     if (href && href !== '#' && path.endsWith(href.replace(/^\//, ''))) {
