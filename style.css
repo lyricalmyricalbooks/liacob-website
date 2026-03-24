@@ -309,7 +309,7 @@ img { display: block; max-width: 100%; }
 .hp-coll-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4rem 3rem;
+  gap: 5rem 3rem;
 }
 .hp-coll-card {
   display: block; text-decoration: none; color: var(--ink);
@@ -331,6 +331,13 @@ img { display: block; max-width: 100%; }
 }
 .hp-coll-card__label .arrow { margin-left: 0.5rem; transition: transform 0.2s; display: inline-block; }
 .hp-coll-card:hover .hp-coll-card__label .arrow { transform: translateX(5px); }
+.hp-coll-card__desc {
+  margin-top: 0.8rem;
+  font-size: 1.4rem;
+  color: var(--mid);
+  line-height: 1.6;
+  text-align: center;
+}
 
 .hp-email {
   border-top: 0.1rem solid var(--rule);
