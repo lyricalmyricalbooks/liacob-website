@@ -6,15 +6,14 @@
   <title>Luciano Iacobelli</title>
   <meta name="description" content="Luciano Iacobelli — Toronto born poet, publisher, visual artist and playwright.">
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 <script src="nav.js"></script>
 
 <!-- HERO -->
 <section class="hp-hero">
-  <img src="https://www.lucianoiacobelli.com/cdn/shop/files/maxresdefault.jpg?v=1674159942&width=2400"
-       alt="Luciano Iacobelli" loading="eager">
+  <img src="https://www.lucianoiacobelli.com/cdn/shop/files/maxresdefault_1.jpg?v=1674159942&width=2400"
+       alt="Luciano Iacobelli artwork" loading="eager">
 </section>
 
 <!-- INTRO -->
@@ -37,6 +36,19 @@
     <p style="margin-top: 2rem; font-style: italic; font-size: 1.4rem;">— Corrado Paina</p>
   </div>
 </section>
+
+<!-- VIDEO -->
+<div class="hp-sec-head"><h2>Video</h2></div>
+<div class="hp-video">
+  <div class="hp-video-thumb" id="video-thumb" onclick="playVideo()">
+    <img src="https://www.lucianoiacobelli.com/cdn/shop/files/maxresdefault.jpg?v=1674159942&width=1800"
+         alt="Play video" loading="lazy">
+    <div class="hp-video-play"><div class="hp-video-play-btn"></div></div>
+  </div>
+  <div class="hp-video-iframe" id="video-iframe">
+    <iframe src="" id="video-frame" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
 
 <!-- COLLECTIONS GRID -->
 <div class="hp-sec-head"><h2>Luciano's Collections</h2></div>
@@ -112,6 +124,13 @@
   </form>
 </section>
 
-
+<script>
+function playVideo() {
+  document.getElementById('video-thumb').style.display = 'none';
+  var wrap = document.getElementById('video-iframe');
+  wrap.classList.add('active');
+  document.getElementById('video-frame').src = 'https://www.youtube.com/embed/2NWLtRx-kBM?autoplay=1';
+}
+</script>
 </body>
 </html>
