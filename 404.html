@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting…</title>
+  <script>
+    // If someone hits lyricalmyricalbooks.github.io/poetry-books/...
+    // redirect to lyricalmyricalbooks.github.io/liacob-website/poetry-books/...
+    var seg = window.location.pathname;
+    if (!seg.startsWith('/liacob-website')) {
+      window.location.replace('/liacob-website' + seg + window.location.search);
+    }
+  </script>
+</head>
+<body></body>
+</html>
