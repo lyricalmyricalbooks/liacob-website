@@ -17,7 +17,7 @@
     <div class="toolbar-right">
       <span>Sort by:</span>
       <button class="sort-group">Featured</button>
-      <div class="product-count">31 products</div>
+      <div class="product-count" id="product-count">64 products</div>
     </div>
   </div>
   <h1>Medium Artwork</h1>
@@ -108,6 +108,11 @@ document.getElementById('lb-close').onclick=function(){document.getElementById('
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
 function openLB(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open');}
+(function(){
+  var cards=document.querySelectorAll('.product-grid .product-card').length;
+  var count=document.getElementById('product-count');
+  if(count){count.textContent=cards + ' products';}
+})();
 </script>
 </body>
 </html>
