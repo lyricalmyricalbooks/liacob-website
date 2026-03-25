@@ -1,15 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Compute base by walking up from current page to find the root
-  // where index.html and nav.js live side by side.
-  // Works on GitHub Pages, Netlify, or any custom domain.
   var path = window.location.pathname;
 
-  // Strip the filename if present
   var dir = path.endsWith('/') ? path : path.substring(0, path.lastIndexOf('/') + 1);
 
-  // Walk up until we're at the directory that contains nav.js
-  // We know nav.js is at the site root. Subpages are 1 level deep (art/, poetry-books/, etc.)
-  // So if current dir ends with /art/ or /poetry-books/ etc., go up one level.
   var subDirs = ['art/', 'poetry-books/', 'lyricalmyrical/', 'lucs-apartment/', 'contact/'];
   var base = dir;
   for (var i = 0; i < subDirs.length; i++) {
@@ -21,14 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var NAV = '<header class="site-header">'
     + '<div class="header-top">'
-    + '  <div class="header-top-left">'
-    + '    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>'
-    + '  </div>'
     + '  <a href="' + base + 'index.html" class="header-logo">Luciano Iacobelli</a>'
-    + '  <div class="header-top-right">'
-    + '    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>'
-    + '    <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>'
-    + '  </div>'
     + '</div>'
     + '<div class="header-bottom">'
     + '<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>'
@@ -65,5 +51,31 @@ document.addEventListener('DOMContentLoaded', function() {
   if (path.includes('/art/')) {
     var artLink = document.querySelector('.nav-art');
     if (artLink) artLink.classList.add('active');
+  }
+
+  var productGrid = document.querySelector('.product-grid');
+  if (productGrid) {
+    document.querySelectorAll('.toolbar-left, .sort-group, .filter-group, .collection-toolbar .toolbar-right > span').forEach(function(el) {
+      el.remove();
+    });
+
+    var updateCount = function() {
+      var cardCount = productGrid.querySelectorAll('.product-card').length;
+      var countEl = document.querySelector('.product-count');
+      if (!countEl) {
+        var header = document.querySelector('.page-header');
+        if (header) {
+          countEl = document.createElement('div');
+          countEl.className = 'product-count';
+          header.appendChild(countEl);
+        }
+      }
+      if (countEl) {
+        countEl.textContent = cardCount + (cardCount === 1 ? ' piece' : ' pieces');
+      }
+    };
+
+    updateCount();
+    window.addEventListener('load', updateCount);
   }
 });
