@@ -53,7 +53,7 @@ luciano-site/
 ├── poetry-books/
 │   └── index.html          All 7 poetry books
 ├── lyricalmyrical/
-│   └── index.html          120 LyricalMyrical covers
+│   └── index.html          120 Lyricalmyrical covers
 ├── lucs-apartment/
 │   └── index.html          Photo gallery by Vincenzo Pietropaolo
 └── contact/

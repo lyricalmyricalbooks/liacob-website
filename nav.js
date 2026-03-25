@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     + '<a href="' + base + 'art/assemblage.html">Assemblage</a>'
     + '</div></div>'
     + '<a href="' + base + 'poetry-books/index.html" class="nav-link">Poetry Books</a>'
-    + '<a href="' + base + 'lyricalmyrical/index.html" class="nav-link">LyricalMyrical Covers</a>'
+    + '<a href="' + base + 'lyricalmyrical/index.html" class="nav-link">Lyricalmyrical Covers</a>'
     + '<a href="' + base + 'lucs-apartment/index.html" class="nav-link">Luc\'s Apartment</a>'
     + '<a href="' + base + 'contact/index.html" class="nav-link">Contact</a>'
     + '</nav></div></header>';
