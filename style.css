@@ -433,30 +433,74 @@ img { display: block; max-width: 100%; }
 .apartment-grid-2 img { width: 100%; height: auto; object-fit: contain; }
 
 /* ── CONTACT ── */
-.contact-section { max-width: 56rem; margin: 0 auto; padding: 4rem 2rem 6rem; }
-.contact-section > p { font-size: 1.4rem; line-height: 1.75; margin-bottom: 1rem; }
-.contact-section a { color: var(--ink); text-decoration: underline; }
-.contact-form { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.6rem; }
+.contact-header { padding-bottom: 0; }
+.contact-section {
+  max-width: 104rem;
+  margin: 0 auto;
+  padding: 2rem 2rem 8rem;
+}
+.contact-section > p {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 92rem;
+  font-weight: 600;
+}
+.contact-form { margin-top: 4rem; display: flex; flex-direction: column; gap: 2.4rem; }
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
 .field label {
-  display: block; font-size: 1.1rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .field input, .field textarea {
-  width: 100%; padding: 1rem 1.2rem;
-  font-family: var(--font-ui); font-size: 1.4rem;
-  border: 0.1rem solid var(--rule); background: #fff;
-  color: var(--ink); outline: none; transition: border-color 0.2s;
+  width: 100%;
+  padding: 1.8rem 2rem;
+  font-family: var(--font-ui);
+  font-size: 1.4rem;
+  border: 0.1rem solid #d2d2d2;
+  background: #fff;
+  color: #1f2937;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  border-radius: 0.4rem;
 }
-.field input:focus, .field textarea:focus { border-color: var(--ink); }
-.field textarea { min-height: 12rem; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder {
+  color: #263548;
+  font-weight: 600;
+}
+.field input:focus, .field textarea:focus {
+  border-color: #6b7280;
+  box-shadow: 0 0 0 3px rgba(209, 213, 219, 0.45);
+}
+.field textarea {
+  min-height: 20rem;
+  resize: vertical;
+}
 .btn-primary {
-  background: var(--ink); color: var(--bg);
-  border: none; padding: 1.3rem 3rem;
-  font-family: var(--font-ui); font-size: 1.2rem;
-  font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-  cursor: pointer; align-self: flex-start;
+  background: #e6e6e6;
+  color: var(--ink);
+  border: none;
+  padding: 1.7rem 4.8rem;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  align-self: flex-start;
 }
-.btn-primary:hover { background: #333; }
+.btn-primary:hover { background: #d7d7d7; }
 
 /* ── LIGHTBOX ── */
 #lightbox {
@@ -510,6 +554,7 @@ footer {
   .apt-grid3 { grid-template-columns: 1fr; }
   .apt-grid3 img, .apt-grid2 img { height: 22rem; }
   .apt-grid2 { grid-template-columns: 1fr; }
+  .contact-form-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(3, 1fr); }
