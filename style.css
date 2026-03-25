@@ -433,7 +433,11 @@ img { display: block; max-width: 100%; }
 .apartment-grid-2 img { width: 100%; height: auto; object-fit: contain; }
 
 /* ── CONTACT ── */
-.contact-header { padding-bottom: 0; }
+.contact-header {
+  max-width: 104rem;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
 .contact-section {
   max-width: 104rem;
   margin: 0 auto;
