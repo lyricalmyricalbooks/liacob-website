@@ -93,10 +93,16 @@ This has now been done in the HTML pages: image references point to local files 
 Import your saved image folder into this project:
 
 ```bash
-python scripts/import_local_images.py /path/to/your/saved-images
+node scripts/import-local-images.mjs /path/to/your/saved-images
 ```
 
 The script matches by original Shopify filename and copies files into the exact local paths used by the site.
+
+If you prefer Python, this equivalent command still works:
+
+```bash
+python scripts/import_local_images.py /path/to/your/saved-images
+```
 
 ### If you need to pull from Shopify URLs (fallback only)
 
