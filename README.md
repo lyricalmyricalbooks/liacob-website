@@ -63,3 +63,50 @@ luciano-site/
 ## UPDATING THE SITE
 To update after changes: just drag the `luciano-site` folder back into Netlify.
 Netlify automatically republishes — no command line needed.
+
+---
+
+## TROUBLESHOOTING: images stopped loading
+
+If **all** images disappeared after moving away from Shopify, the image URLs are likely still pointing at:
+
+`https://www.lucianoiacobelli.com/cdn/shop/...`
+
+Those links only work while Shopify is serving that domain path. When the domain is pointed at Netlify (or another host), `/cdn/shop/...` is no longer Shopify and image requests fail.
+
+### What this repo now does
+
+`nav.js` includes a fallback loader for Shopify-style image links. It retries failed image URLs across a host list.
+
+Default host retry order:
+1. `https://www.lucianoiacobelli.com`
+2. `https://lucianoiacobelli.com`
+
+### How to restore images permanently
+
+Best long-term fix: host your images directly in this repo (for example under `images/`) and update `src` values to local paths.
+
+This has now been done in the HTML pages: image references point to local files under `images/shopify/`, with source mappings stored in `images/shopify/manifest.json`.
+
+To populate/download those files from the original Shopify URLs, run:
+
+```bash
+python scripts/download_shopify_images.py
+```
+
+If your current machine cannot access those Shopify URLs, run that command from a network that can, then redeploy.
+
+If your images are still available on a Shopify/myshopify domain, set that host before loading `nav.js`:
+
+```html
+<script>
+  window.IMAGE_FALLBACK_HOSTS = [
+    "https://YOUR-SHOP-NAME.myshopify.com",
+    "https://www.lucianoiacobelli.com",
+    "https://lucianoiacobelli.com"
+  ];
+</script>
+<script src="nav.js"></script>
+```
+
+This lets the site retry broken image URLs against the Shopify origin without hand-editing every image link first.

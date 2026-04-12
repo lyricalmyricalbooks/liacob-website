@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
+  var SHOPIFY_PATH_PREFIX = '/cdn/shop/';
+  var DEFAULT_IMAGE_HOSTS = [
+    'https://www.lucianoiacobelli.com',
+    'https://lucianoiacobelli.com'
+  ];
+  var configuredHosts = Array.isArray(window.IMAGE_FALLBACK_HOSTS) ? window.IMAGE_FALLBACK_HOSTS : [];
+  var imageHosts = configuredHosts.concat(DEFAULT_IMAGE_HOSTS).filter(function(host, idx, arr) {
+    return typeof host === 'string' && host.length > 0 && arr.indexOf(host) === idx;
+  });
+
+  var toUrl = function(value) {
+    try {
+      return new URL(value, window.location.origin);
+    } catch (e) {
+      return null;
+    }
+  };
+
+  var nextImageCandidate = function(src) {
+    var url = toUrl(src);
+    if (!url || url.pathname.indexOf(SHOPIFY_PATH_PREFIX) === -1) return null;
+    var currentOrigin = url.origin;
+    var currentIdx = imageHosts.indexOf(currentOrigin);
+    var nextHost = currentIdx >= 0 ? imageHosts[currentIdx + 1] : imageHosts[0];
+    if (!nextHost) return null;
+    return nextHost + url.pathname + url.search;
+  };
+
+  document.addEventListener('error', function(event) {
+    var img = event.target;
+    if (!(img instanceof HTMLImageElement)) return;
+    var retries = parseInt(img.dataset.cdnRetry || '0', 10);
+    var nextSrc = nextImageCandidate(img.currentSrc || img.src);
+    if (!nextSrc || retries >= imageHosts.length - 1) return;
+    img.dataset.cdnRetry = String(retries + 1);
+    img.src = nextSrc;
+  }, true);
+
   var path = window.location.pathname;
 
   var dir = path.endsWith('/') ? path : path.substring(0, path.lastIndexOf('/') + 1);
